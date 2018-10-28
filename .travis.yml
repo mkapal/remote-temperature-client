@@ -1,5 +1,7 @@
 language: node_js
 
+before_script: cat "WEBSOCKET_SERVER=ws://p.lempls.com" > .env
+
 script: yarn build
 
 deploy:
