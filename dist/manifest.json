@@ -1,0 +1,20 @@
+{
+  "short_name": "Teplota",
+  "name": "Teplota U Pahoráka",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url":"/?utm_source=homescreen",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "remote-temperature-client",
+  "version": "2.0.0",
+  "description": "Arduino Remote Temperature Client",
+  "author": "Martin Kapal <flamecze@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "sockette": "^2.0.0"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --mode=development",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "dotenv-webpack": "^1.5.7",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
+  }
+}

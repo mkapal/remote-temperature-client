@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Martin Kapal">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#ddd">
+    <link rel="apple-touch-icon" href="/icon-ios.png">
+    <link rel="apple-touch-icon" sizes="225x225" href="/icon-ios.png">
+    <title>Teplota</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      #container {
+        width: 300px;
+        height: 100px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+      }
+      #temperature {
+        font-size: 50px;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+      #date {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="temperature">-</div>
+      <div id="date">-</div>
+    </div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
