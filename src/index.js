@@ -25,7 +25,7 @@ const updateTemperature = (temperature, timestamp) => {
     hour: '2-digit',
     minute: '2-digit',
   };
-  const date = timestamp ? new Date(timestamp).toLocaleDateString('cs-CZ', dateOptions) : '';
+  const date = timestamp ? new Date(timestamp).toLocaleDateString(undefined, dateOptions) : '';
   document.getElementById('temperature').innerText = temperatureText;
   document.getElementById('date').innerText = date;
 };
