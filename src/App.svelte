@@ -31,7 +31,7 @@
       console.log('Stop Attempting');
     },
     onclose: () => {
-      connecting = false;
+      connecting = true;
       console.log('Closed');
     },
     onerror: () => {
