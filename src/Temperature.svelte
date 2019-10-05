@@ -7,8 +7,7 @@
 
 <style>
   div {
-    font-size: 50px;
-    font-weight: bold;
+    font-size: 20vw;
     margin-bottom: 15px;
   }
 </style>
