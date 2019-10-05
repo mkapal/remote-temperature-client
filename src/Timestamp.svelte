@@ -14,10 +14,4 @@
       : '-';
 </script>
 
-<style>
-  div {
-    font-size: 20px;
-  }
-</style>
-
 <div>{formattedTimestamp}</div>

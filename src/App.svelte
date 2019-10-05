@@ -5,8 +5,8 @@
 
   let connecting = true;
   let error = false;
-  let temperature;
-  let timestamp;
+  let temperature = 25.3;
+  let timestamp = new Date();
 
   new Sockette(process.env.WEBSOCKET_SERVER, {
     timeout: 5000,
@@ -49,6 +49,8 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    background-color: #3f8eb6;
+    color: white;
   }
 </style>
 
