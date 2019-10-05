@@ -3,27 +3,42 @@
   import Temperature from './Temperature.svelte';
   import Timestamp from './Timestamp.svelte';
 
-  let isLoading = true;
-  let temperature = 42.57;
-  let timestamp = new Date();
+  let connecting = true;
+  let error = false;
+  let temperature;
+  let timestamp;
 
-  new Sockette('ws://localhost:3000', {
+  new Sockette(process.env.WEBSOCKET_SERVER, {
     timeout: 5000,
     maxAttempts: 10,
     onopen: () => {
+      connecting = false;
+      error = false;
       console.log('Connected');
-      // isLoading = false;
     },
     onmessage: e => {
-      console.log('Message received');
       const data = JSON.parse(e.data);
       temperature = data.temperature;
       timestamp = data.timestamp;
+      console.log('Message received', data);
     },
-    onreconnect: () => console.log('Reconnecting...'),
-    onmaximum: () => console.log('Stop Attempting'),
-    onclose: () => console.log('Closed'),
-    onerror: () => console.log('Error'),
+    onreconnect: () => {
+      connecting = true;
+      console.log('Reconnecting...');
+    },
+    onmaximum: () => {
+      connecting = false;
+      console.log('Stop Attempting');
+    },
+    onclose: () => {
+      connecting = false;
+      console.log('Closed');
+    },
+    onerror: () => {
+      connecting = false;
+      error = true;
+      console.log('Error');
+    },
   });
 </script>
 
@@ -38,11 +53,14 @@
 </style>
 
 <div class="appContainer">
-  {#if isLoading}
-      <img src="spinner.svg" alt="Loading tempereature" />
+  {#if error && !connecting}
+    <p>Při načítání se vyskytla chyba.</p>
+  {:else if connecting || !temperature}
+    <img src="spinner.svg" alt="Loading" />
+    {connecting ? 'Připojování' : 'Čekání'}
   {:else}
-  <Temperature {temperature} />
-  <Timestamp {timestamp} />
+    <Temperature {temperature} />
+    <Timestamp {timestamp} />
   {/if}
 
 </div>

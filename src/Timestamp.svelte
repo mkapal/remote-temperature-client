@@ -20,6 +20,4 @@
   }
 </style>
 
-<div>
-  {formattedTimestamp}
-</div>
+<div>{formattedTimestamp}</div>
