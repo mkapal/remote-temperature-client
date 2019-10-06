@@ -1,5 +1,5 @@
 <script context="module">
-  import { translations } from 'svelte-intl';
+  import { locale, translations, getBrowserLocale } from 'svelte-intl';
   import en from './lang/en';
   import cs from './lang/cs';
 
@@ -7,6 +7,9 @@
     en,
     cs,
   });
+
+  const userLocale = getBrowserLocale('cs');
+  locale.set(userLocale);
 </script>
 
 <script>
