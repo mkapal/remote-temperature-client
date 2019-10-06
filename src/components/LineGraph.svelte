@@ -1,7 +1,7 @@
 <script>
   import { scaleLinear } from 'd3-scale';
 
-  export let points = [{ x: 0, y: 0 }];
+  export let points = [];
   export let yTicks = [-20, 0, 20, 40];
   export let xTicks = [1, 25, 50, 75, 100];
   const padding = { top: 20, right: 15, bottom: 20, left: 25 };
@@ -17,12 +17,9 @@
     .domain([Math.min.apply(null, yTicks), Math.max.apply(null, yTicks)])
     .range([height - padding.bottom, padding.top]);
 
-  $: minX = points[0].x;
-  $: maxX = points[points.length - 1].x;
+  $: minX = points.length > 0 ? points[0].x : 0;
+  $: maxX = points.length > 0 ? points[points.length - 1].x : 0;
   $: path = `M${points.map(p => `${xScale(p.x)},${yScale(p.y)}`).join('L')}`;
-  $: area = `${path}L${xScale(maxX)},${yScale(0)}L${xScale(minX)},${yScale(
-    0,
-  )}Z`;
 </script>
 
 <style>
@@ -85,6 +82,8 @@
         </g>
       {/each}
     </g>
-    <path class="path-line" d={path} />
+    {#if points.length > 0}
+      <path class="path-line" d={path} />
+    {/if}
   </svg>
 </div>

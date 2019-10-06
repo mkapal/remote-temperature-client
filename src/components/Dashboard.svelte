@@ -10,7 +10,7 @@
   export let timestamp;
   export let connecting = true;
   export let error = false;
-  export let historyData = [{ x: 0, y: 0 }];
+  export let historyData = [];
 
   const userLocale = getBrowserLocale('cs');
 </script>
