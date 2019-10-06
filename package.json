@@ -8,6 +8,7 @@
     "rollup": "^1.12.0",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-dotenv": "^0.2.0",
+    "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "^2.2.0",
@@ -17,8 +18,10 @@
   },
   "dependencies": {
     "d3-scale": "^3.1.0",
+    "format-message": "^6.2.3",
     "sirv-cli": "^0.4.4",
-    "sockette": "^2.0.6"
+    "sockette": "^2.0.6",
+    "svelte-intl": "^1.0.5"
   },
   "scripts": {
     "build": "rollup -c",

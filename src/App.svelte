@@ -1,5 +1,20 @@
+<script context="module">
+  import { locale, translations, getBrowserLocale } from 'svelte-intl';
+  import en from './lang/en';
+  import cs from './lang/cs';
+
+  translations.update({
+    en,
+    cs,
+  });
+
+  const userLocale = getBrowserLocale('cs');
+  locale.set(userLocale);
+</script>
+
 <script>
   import Sockette from 'sockette';
+  import { _ } from 'svelte-intl';
 
   import Temperature from './Temperature.svelte';
   import Timestamp from './Timestamp.svelte';
@@ -53,7 +68,7 @@
       console.warn('Stop attempting');
     },
     onclose: () => {
-      connecting = true;
+      connecting = false;
       console.warn('Closed');
     },
     onerror: () => {
@@ -98,16 +113,16 @@
 
 <div class="appContainer">
   {#if error && !connecting}
-    <p>Při načítání se vyskytla chyba.</p>
+    <p>{$_('loading.error')}</p>
   {:else if connecting || temperature === undefined}
     <div>
       <img src="spinner.svg" alt="Loading" />
-      <p>{connecting ? 'Připojování' : 'Čekání'}</p>
+      <p>{connecting ? $_('connecting') : $_('waiting')}</p>
     </div>
   {:else}
     <div>
       <Temperature {temperature} />
-      <Timestamp {timestamp} />
+      <Timestamp {timestamp} locale={userLocale} />
     </div>
     <LineGraph
       points={historyData}
