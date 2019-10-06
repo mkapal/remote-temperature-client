@@ -77,8 +77,10 @@
   <svg>
     <g class="axis y-axis" transform="translate(0, {padding.top})">
       {#each yTicks as tick}
-        <g class="tick tick-{tick}" transform="translate(0, {yScale(tick) - padding.bottom})">
-          <line x2="100%"></line>
+        <g
+          class="tick tick-{tick}"
+          transform="translate(0, {yScale(tick) - padding.bottom})">
+          <line x2="100%" />
           <text y="-4">{tick}{tick === 0 ? ' °C' : ''}</text>
         </g>
       {/each}
