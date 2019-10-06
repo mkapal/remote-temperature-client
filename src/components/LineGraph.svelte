@@ -1,5 +1,6 @@
 <script>
   import { scaleLinear } from 'd3-scale';
+  import { fade } from 'svelte/transition';
 
   export let points = [];
   export let yTicks = [-20, 0, 20, 40];
@@ -70,7 +71,7 @@
   }
 </style>
 
-<div class="graph" bind:clientWidth={width} bind:clientHeight={height}>
+<div class="graph" bind:clientWidth={width} bind:clientHeight={height} in:fade>
   <svg>
     <g class="axis y-axis" transform="translate(0, {padding.top})">
       {#each yTicks as tick}

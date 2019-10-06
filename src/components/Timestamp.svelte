@@ -1,4 +1,5 @@
 <script>
+  import { fade } from 'svelte/transition';
   export let timestamp = undefined;
   export let locale = undefined;
   const dateOptions = {
@@ -9,6 +10,6 @@
   };
 </script>
 
-<div>
+<div in:fade>
   {timestamp !== undefined ? new Date(timestamp).toLocaleDateString(locale, dateOptions) : ''}
 </div>
