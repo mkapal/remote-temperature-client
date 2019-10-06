@@ -17,7 +17,7 @@
   let error = false;
   let temperature;
   let timestamp;
-  let historyData = [{ x: 0, y: 0 }];
+  let historyData = [];
 
   new Sockette(process.env.WEBSOCKET_SERVER, {
     timeout: 5000,
