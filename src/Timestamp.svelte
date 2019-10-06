@@ -1,5 +1,6 @@
 <script>
   export let timestamp = undefined;
+  export let locale = undefined;
   const dateOptions = {
     month: 'long',
     day: 'numeric',
@@ -9,5 +10,5 @@
 </script>
 
 <div>
-  {timestamp !== undefined ? new Date(timestamp).toLocaleDateString(undefined, dateOptions) : ''}
+  {timestamp !== undefined ? new Date(timestamp).toLocaleDateString(locale, dateOptions) : ''}
 </div>
