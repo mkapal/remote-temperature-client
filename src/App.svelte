@@ -17,6 +17,8 @@
     onopen: () => {
       connecting = false;
       error = false;
+      temperature = undefined;
+      timestamp = undefined;
       console.info('Connected');
     },
     onmessage: event => {
