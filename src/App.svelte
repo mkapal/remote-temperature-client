@@ -59,6 +59,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    align-content: center;
     height: 100%;
     background-color: #3f8eb6;
     color: #fff;
@@ -69,8 +70,10 @@
   {#if error && !connecting}
     <p>Při načítání se vyskytla chyba.</p>
   {:else if connecting || !temperature}
-    <img src="spinner.svg" alt="Loading" />
-    {connecting ? 'Připojování' : 'Čekání'}
+    <div>
+      <img src="spinner.svg" alt="Loading" />
+      <p>{connecting ? 'Připojování' : 'Čekání'}</p>
+    </div>
   {:else}
     <div>
       <Temperature {temperature} />
