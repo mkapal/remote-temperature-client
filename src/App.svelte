@@ -17,38 +17,47 @@
     onopen: () => {
       connecting = false;
       error = false;
-      console.log('Connected');
+      console.info('Connected');
     },
-    onmessage: e => {
-      const data = JSON.parse(e.data);
-      temperature = data.temperature;
-      timestamp = data.timestamp;
+    onmessage: event => {
+      try {
+        const data = JSON.parse(event.data);
 
-      if (data.latestTemperatures && data.latestTemperatures.length > 0) {
-        historyData = data.latestTemperatures.map((val, idx) => ({
-          x: idx + 1,
-          y: val,
-        }));
+        if (data.hasOwnProperty('temperature')) {
+          temperature = data.temperature;
+        }
+
+        if (data.hasOwnProperty('timestamp')) {
+          timestamp = data.timestamp;
+        }
+
+        if (data.hasOwnProperty('latestTemperatures') && data.latestTemperatures.length > 0) {
+          historyData = data.latestTemperatures.map((val, idx) => ({
+            x: idx + 1,
+            y: val,
+          }));
+        }
+      } catch (error) {
+        console.warn('Could not parse received data:', event.data);
+        console.error('Error:', error);
       }
-
-      console.log('Message received', data);
     },
     onreconnect: () => {
       connecting = true;
-      console.log('Reconnecting...');
+      console.info('Reconnecting...');
     },
     onmaximum: () => {
       connecting = false;
-      console.log('Stop Attempting');
+      console.warn('Stop attempting');
     },
     onclose: () => {
       connecting = true;
-      console.log('Closed');
+      console.warn('Closed');
     },
     onerror: () => {
       connecting = false;
       error = true;
-      console.log('Error');
+      console.error('Connection error');
     },
   });
 </script>
