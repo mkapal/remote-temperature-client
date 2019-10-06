@@ -1,6 +1,5 @@
 <script>
-  import { getBrowserLocale } from 'svelte-intl';
-  import { _ } from 'svelte-intl';
+  import { _, getBrowserLocale } from 'svelte-intl';
 
   import Temperature from './Temperature.svelte';
   import Timestamp from './Timestamp.svelte';
