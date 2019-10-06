@@ -4,6 +4,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import dotenv from 'rollup-plugin-dotenv';
+import replace from 'rollup-plugin-replace';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -16,6 +17,10 @@ export default {
 		file: 'public/bundle.js'
 	},
 	plugins: [
+		replace({
+			'process.env.NODE_ENV': process.env.NODE_ENV
+		}),
+		dotenv(),
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
@@ -25,7 +30,6 @@ export default {
 				css.write('public/bundle.css');
 			}
 		}),
-		dotenv(),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
