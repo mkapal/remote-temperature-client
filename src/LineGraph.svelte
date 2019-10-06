@@ -61,7 +61,7 @@
     stroke: rgba(255, 255, 255, 0.75);
     stroke-linejoin: round;
     stroke-linecap: round;
-    stroke-width: 1;
+    stroke-width: 2;
   }
 
   .path-area {
@@ -72,11 +72,12 @@
 <div bind:clientWidth={width} bind:clientHeight={height}>
   <svg>
     <g class="axis y-axis" transform="translate(0, {padding.top})">
-      <g
-        class="tick tick-0}"
-        transform="translate(0, {yScale(0) - padding.bottom})">
-        <line x2="100%" />
-      </g>
+      {#each yTicks as tick}
+        <g class="tick tick-{tick}" transform="translate(0, {yScale(tick) - padding.bottom})">
+          <line x2="100%"></line>
+          <text y="-4">{tick}</text>
+        </g>
+      {/each}
     </g>
     <path class="path-line" d={path} />
   </svg>
