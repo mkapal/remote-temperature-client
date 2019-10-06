@@ -10,4 +10,6 @@
   }
 </style>
 
-<div>{temperature ? Number(temperature).toFixed(0) + '°' : '-'}</div>
+<div>
+  {temperature !== undefined ? Number(temperature).toFixed(0) + '°' : '-'}
+</div>
