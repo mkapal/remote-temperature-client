@@ -8,4 +8,6 @@
   };
 </script>
 
-<div>{timestamp !== undefined ? new Date(timestamp).toLocaleDateString(undefined, dateOptions) : ''}</div>
+<div>
+  {timestamp !== undefined ? new Date(timestamp).toLocaleDateString(undefined, dateOptions) : ''}
+</div>

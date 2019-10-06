@@ -88,7 +88,7 @@
 <div class="appContainer">
   {#if error && !connecting}
     <p>Při načítání se vyskytla chyba.</p>
-  {:else if connecting || !temperature}
+  {:else if connecting || temperature === undefined}
     <div>
       <img src="spinner.svg" alt="Loading" />
       <p>{connecting ? 'Připojování' : 'Čekání'}</p>
