@@ -1,15 +1,13 @@
 <script>
   export let temperature = undefined;
-  $: temperatureText = temperature
-    ? Number(temperature).toFixed(1) + '°'
-    : '-';
 </script>
 
 <style>
   div {
-    font-size: 20vw;
+    font-size: 30vw;
+    font-weight: 300;
     margin-bottom: 15px;
   }
 </style>
 
-<div>{temperatureText}</div>
+<div>{temperature ? Number(temperature).toFixed(0) + '°' : '-'}</div>
