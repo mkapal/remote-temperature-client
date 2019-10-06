@@ -2,4 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mkapal/remote-temperature-client.svg?branch=master)](https://travis-ci.org/mkapal/remote-temperature-client)
 
-Simple remote temperature client using WebSockets.
+A web app showing real-time temperature and a graph with historical data.
+
+![Application](screenshot.png)
+
