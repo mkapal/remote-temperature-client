@@ -1,7 +1,7 @@
 <script>
   export let temperature = undefined;
   $: temperatureText = temperature
-    ? Number(temperature).toFixed(1) + ' °C'
+    ? Number(temperature).toFixed(1) + '°'
     : '-';
 </script>
 
