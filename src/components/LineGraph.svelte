@@ -4,7 +4,6 @@
 
   export let points = [];
   export let yTicks = [-20, 0, 20, 40];
-  export let xTicks = [1, 25, 50, 75, 100];
   const padding = { top: 20, right: 15, bottom: 20, left: 25 };
 
   let width = 450;
