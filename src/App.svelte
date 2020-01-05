@@ -23,7 +23,7 @@
   let historyData = [];
 
   new Sockette(process.env.WEBSOCKET_SERVER, {
-    timeout: 5000,
+    timeout: 1000,
     maxAttempts: 10,
     onopen: () => {
       connecting = false;
