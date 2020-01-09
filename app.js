@@ -3,11 +3,11 @@ import { useEffect, useState } from 'https://unpkg.com/preact@latest/hooks/dist/
 import Sockette from 'https://unpkg.com/sockette@latest?module';
 
 const App = () => {
+  const [connecting, setConnecting] = useState(true);
+  const [error, setError] = useState(false);
   const [temperature, setTemperature] = useState(undefined);
   const [timestamp, setTimestamp] = useState(undefined);
   const [latestTemperatures, setLatestTemperatures] = useState([]);
-  const [connecting, setConnecting] = useState(true);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     new Sockette('wss://p.lempls.com', {
@@ -16,7 +16,6 @@ const App = () => {
       onopen: () => {
         setConnecting(false);
         setError(false);
-        setTemperature(undefined);
         console.info('Connected');
       },
       onmessage: event => {
@@ -65,7 +64,35 @@ const App = () => {
     });
   }, []);
 
-  return h('p', {}, temperature);
+  if (error && !connecting) {
+    return h('p', {}, 'Error while loading data');
+  }
+
+  if (connecting || temperature === undefined || timestamp === undefined) {
+    return h('div', {}, [
+      h('img', {
+        src: 'spinner.svg',
+        alt: 'Loading',
+      }),
+      h('p', {}, connecting ? 'Connecting' : 'Waiting'),
+    ]);
+  }
+
+  const formattedTemperature = Number(temperature).toFixed(0) + '°';
+  const dateOptions = {
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  };
+  const formattedTimestamp = new Date(timestamp).toLocaleDateString(undefined, dateOptions);
+
+  return h('div', {}, [
+    h('div', {
+      class: 'Temperature',
+    }, formattedTemperature),
+    h('div', {}, formattedTimestamp)
+  ]);
 };
 
 render(
