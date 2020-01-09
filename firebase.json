@@ -3,6 +3,8 @@
     "public": ".",
     "ignore": [
       "firebase.json",
+      "screenshot.png",
+      "README.md",
       "**/.*"
     ],
     "rewrites": [
