@@ -32,3 +32,9 @@ body {
   );
   color: #fff;
 }
+
+.Temperature {
+  font-size: 30vw;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
