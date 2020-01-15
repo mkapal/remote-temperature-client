@@ -1,3 +1,5 @@
 .DS_Store
 .env
 .firebase
+node_modules
+public/bundle.*
