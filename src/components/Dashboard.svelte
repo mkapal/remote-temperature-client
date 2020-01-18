@@ -47,9 +47,7 @@
 </style>
 
 <div class="dashboard">
-  {#if error && !connecting}
-    <p>{$_('loading.error')}</p>
-  {:else if connecting || temperature === undefined}
+  {#if connecting && temperature === undefined}
     <div>
       <img src="spinner.svg" alt="Loading" />
       <p>{connecting ? $_('connecting') : $_('waiting')}</p>
