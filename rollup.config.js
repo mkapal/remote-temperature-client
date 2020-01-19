@@ -25,8 +25,7 @@ export default {
       namedExports: false,
     }),
     replace({
-      'process.env.NODE_ENV': process.env.NODE_ENV,
-      'process.env.WEBSOCKET_SERVER': process.env.WEBSOCKET_SERVER,
+      'process.env.WEBSOCKET_SERVER': JSON.stringify(process.env.WEBSOCKET_SERVER),
     }),
     svelte({
       // enable run-time checks when not in production
