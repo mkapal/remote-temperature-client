@@ -55,7 +55,7 @@
   {:else}
     <div>
       <Temperature {temperature} />
-      <Timestamp {timestamp} locale={userLocale} />
+      <Timestamp {timestamp} {connecting} locale={userLocale} />
     </div>
     <LineGraph
       points={historyData}
