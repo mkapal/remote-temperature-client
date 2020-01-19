@@ -1,6 +1,11 @@
 <script>
   import { fade } from 'svelte/transition';
   export let temperature = undefined;
+
+  const formatTemperature = value => {
+  	const fixedString = Number.parseFloat(value).toFixed();
+  	return fixedString === "-0" ? "0" : fixedString + '°';
+  };
 </script>
 
 <style>
@@ -12,5 +17,5 @@
 </style>
 
 <div in:fade>
-  {temperature !== undefined ? Number(temperature).toFixed(0) + '°' : '-'}
+  {temperature !== undefined ? formatTemperature(temperature) : '-'}
 </div>
