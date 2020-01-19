@@ -3,7 +3,6 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import dotenv from 'rollup-plugin-dotenv';
 import replace from '@rollup/plugin-replace';
 import json from '@rollup/plugin-json';
 
@@ -27,8 +26,8 @@ export default {
     }),
     replace({
       'process.env.NODE_ENV': process.env.NODE_ENV,
+      'process.env.WEBSOCKET_SERVER': process.env.WEBSOCKET_SERVER,
     }),
-    dotenv(),
     svelte({
       // enable run-time checks when not in production
       dev: !production,
