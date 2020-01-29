@@ -4,7 +4,7 @@
 
   const formatTemperature = value => {
   	const fixedString = Number.parseFloat(value).toFixed();
-  	return fixedString === "-0" ? "0" : fixedString + '°';
+  	return (fixedString === "-0" ? "0" : fixedString) + '°';
   };
 </script>
 
