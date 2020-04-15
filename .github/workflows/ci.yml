@@ -14,7 +14,7 @@ jobs:
       with:
         node-version: '10.x'
     - run: yarn install
-    - run: yarn build
+    - run: WEBSOCKET_SERVER=${{ secrets.WEBSOCKET_SERVER }} yarn build
     - uses: w9jds/firebase-action@master
       with:
         args: deploy --only hosting --project arduino-remote
