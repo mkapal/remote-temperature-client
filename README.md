@@ -1,6 +1,6 @@
 # Remote Temperature Client
 
-[![Build Status](https://travis-ci.org/mkapal/remote-temperature-client.svg?branch=master)](https://travis-ci.org/mkapal/remote-temperature-client)
+![CI](https://github.com/mkapal/remote-temperature-client/workflows/CI/badge.svg)
 
 A web app showing real-time temperature and a graph with historical data.
 
