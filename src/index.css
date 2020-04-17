@@ -16,3 +16,7 @@ body {
   height: 100%;
   background: #1e5799;
 }
+
+#root {
+  height: 100%;
+}
