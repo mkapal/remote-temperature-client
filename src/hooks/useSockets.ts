@@ -47,7 +47,7 @@ export const useJSONSockets = <Data>(
     return () => {
       sockette.close();
     };
-  }, [onMessage]);
+  }, [onMessage, serverUrl]);
 
   return {
     connecting,
