@@ -69,8 +69,6 @@ export const HistoryGraph: FC<Props> = ({ points }) => {
     .domain([minX, maxX])
     .range([padding.left, width - padding.right]);
 
-  console.log({ minX, maxX });
-
   const path = `M${points.map(p => `${xScale(p.x)},${yScale(p.y)}`).join('L')}`;
 
   return (
