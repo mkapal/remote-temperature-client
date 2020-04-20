@@ -48,13 +48,13 @@ const yTicks = [-20, 0, 20, 40];
 const width = 300;
 const height = 200;
 
-export type HistoryData = {
+export type HistoryValue = {
   x: number;
   y: number;
-}[];
+};
 
 type Props = {
-  points: HistoryData;
+  points: HistoryValue[];
 };
 
 export const HistoryGraph: FC<Props> = ({ points }) => {

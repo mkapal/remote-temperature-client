@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 
 import { useJSONSockets } from './hooks/useSockets';
 import { Dashboard, HistoryGraph, Loader, Temperature } from './components';
-import { HistoryData } from './components/HistoryGraph';
+import { HistoryValue } from './components/HistoryGraph';
 
 const formatTimestamp = (timestamp?: string) => {
   if (!timestamp) {
@@ -44,7 +44,7 @@ const App = () => {
   );
   const [temperature, setTemperature] = useState<number | undefined>(undefined);
   const [timestamp, setTimestamp] = useState<string | undefined>(undefined);
-  const [historyData, setHistoryData] = useState<HistoryData>([]);
+  const [historyData, setHistoryData] = useState<HistoryValue[]>([]);
 
   if (connecting || temperature === undefined) {
     return (
