@@ -9,14 +9,12 @@
   <meta name="theme-color" content="#1e5799">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/icon-apple-180x180.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/icon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/icon-32x32.png">
-  <link rel="stylesheet" href="/global.css">
-  <link rel="stylesheet" href="/bundle.css">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/icon-apple-180x180.png">
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/icon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/icon-32x32.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap">
-  <script defer src="/bundle.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF6K4EBQXD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -27,8 +25,6 @@
   </script>
 </head>
 <body>
-<script>
-  navigator.serviceWorker.register('/service-worker.js');
-</script>
+  <div id="root"></div>
 </body>
 </html>
