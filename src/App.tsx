@@ -1,21 +1,9 @@
 import React, { useCallback, useState } from 'react';
 
-import { useJSONSockets } from './hooks/useSockets';
 import { Dashboard, HistoryGraph, Loader, Temperature } from './components';
 import { HistoryValue } from './components/HistoryGraph';
-
-const formatTimestamp = (timestamp?: string) => {
-  if (!timestamp) {
-    return '';
-  }
-
-  return new Date(timestamp).toLocaleDateString(undefined, {
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-};
+import { useJSONSockets } from './hooks/useSockets';
+import { formatTimestamp } from './utils';
 
 type TemperatureData = {
   temperature?: number;
