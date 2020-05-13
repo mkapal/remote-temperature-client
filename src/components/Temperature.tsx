@@ -1,10 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-const formatTemperature = (value: number) => {
-  const fixedString = value.toFixed();
-  return (fixedString === '-0' ? '0' : fixedString) + '°';
-};
+import { formatTemperature } from '../utils';
 
 type Props = {
   value: number;
