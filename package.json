@@ -5,6 +5,7 @@
   "devDependencies": {
     "@types/d3-scale": "^2.2.0",
     "@types/styled-components": "^5.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "prettier": "^2.0.2"
   },
   "dependencies": {
@@ -31,7 +32,21 @@
     "prettier": "prettier --write src/**/*.{ts,tsx}"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "plugins": [
+      "import"
+    ],
+    "rules": {
+      "import/order": [
+        "error",
+        {
+          "newlines-between": "always",
+          "alphabetize": {
+            "order": "asc"
+          }
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [

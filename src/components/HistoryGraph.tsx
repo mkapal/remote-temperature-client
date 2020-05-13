@@ -69,13 +69,15 @@ export const HistoryGraph: FC<Props> = ({ points }) => {
     .domain([minX, maxX])
     .range([padding.left, width - padding.right]);
 
-  const path = `M${points.map(p => `${xScale(p.x)},${yScale(p.y)}`).join('L')}`;
+  const path = `M${points
+    .map((p) => `${xScale(p.x)},${yScale(p.y)}`)
+    .join('L')}`;
 
   return (
     <Graph>
       <Svg>
         <MainGraph offsetY={padding.top}>
-          {yTicks.map(tick => (
+          {yTicks.map((tick) => (
             <Tick offsetY={yScale(tick) - padding.bottom} key={tick}>
               <TickLine x2="100%" />
               <TickText y="-4">
