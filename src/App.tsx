@@ -12,19 +12,22 @@ type TemperatureData = {
 };
 
 const App = () => {
-  const handleTemperatureReceived = useCallback((data: TemperatureData) => {
-    setTemperature(data.temperature);
-    setTimestamp(data.timestamp);
+  const handleTemperatureReceived = useCallback(
+    ({ latestTemperatures, temperature, timestamp }: TemperatureData) => {
+      setTemperature(temperature);
+      setTimestamp(timestamp);
 
-    if (data.latestTemperatures && data.latestTemperatures.length > 0) {
-      setHistoryData(
-        data.latestTemperatures.map((value: number, idx: number) => ({
-          x: idx + 1,
-          y: value,
-        })),
-      );
-    }
-  }, []);
+      if (latestTemperatures && latestTemperatures.length > 0) {
+        setHistoryData(
+          latestTemperatures.map((value: number, idx: number) => ({
+            x: idx + 1,
+            y: value,
+          })),
+        );
+      }
+    },
+    [],
+  );
 
   const { connecting, error } = useJSONSockets(
     process.env.REACT_APP_WEBSOCKET_SERVER!,
