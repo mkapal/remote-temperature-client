@@ -17,7 +17,7 @@ export const useJSONSockets = <Data>(
         setError(false);
         console.info('Connected');
       },
-      onmessage: event => {
+      onmessage: (event) => {
         try {
           const data = JSON.parse(event.data) as Data;
           onMessage(data);
