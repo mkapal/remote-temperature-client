@@ -82,24 +82,27 @@ const Icon: FC<{ active?: boolean; icon: IconProp }> = ({ active, icon }) => {
 };
 
 type Props = {
-  connecting: boolean;
-  waiting: boolean;
+  state: 'connecting' | 'waiting' | 'error';
 };
 
-export const Loader: FC<Props> = ({ connecting, waiting }) => (
+export const Loader: FC<Props> = ({ state }) => (
   <>
     <Wrapper>
-      <Icon icon={faMobileAlt} active />
-      <ConnectingLine dotCount={5} speed={10} active={connecting} />
-      <Icon icon={faServer} active={waiting} />
+      <Icon icon={faMobileAlt} active={state !== 'error'} />
+      <ConnectingLine dotCount={5} speed={10} active={state === 'connecting'} />
+      <Icon icon={faServer} active={state === 'waiting'} />
       <ConnectingLine
         dotCount={5}
         speed={10}
-        active={waiting}
+        active={state === 'waiting'}
         direction="left"
       />
       <Icon icon={faThermometerHalf} />
     </Wrapper>
-    <p>{connecting ? 'Připojování' : 'Čekání'}</p>
+    <p>
+      {state === 'connecting' && 'Připojování'}
+      {state === 'waiting' && 'Čekání'}
+      {state === 'error' && 'Při načítání se vyskytla chyba.'}
+    </p>
   </>
 );

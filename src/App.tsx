@@ -29,7 +29,7 @@ const App = () => {
     [],
   );
 
-  const { connecting, error } = useJSONSockets(
+  const { state } = useJSONSockets(
     process.env.REACT_APP_WEBSOCKET_SERVER!,
     handleTemperatureReceived,
   );
@@ -37,24 +37,11 @@ const App = () => {
   const [timestamp, setTimestamp] = useState<string | undefined>(undefined);
   const [historyData, setHistoryData] = useState<HistoryValue[]>([]);
 
-  if (connecting || temperature === undefined) {
+  if (state !== 'loaded') {
     return (
       <Dashboard>
         <div>
-          <Loader
-            connecting={connecting}
-            waiting={temperature === undefined && !connecting}
-          />
-        </div>
-      </Dashboard>
-    );
-  }
-
-  if (error) {
-    return (
-      <Dashboard>
-        <div>
-          <p>Při načítání se vyskytla chyba.</p>
+          <Loader state={state} />
         </div>
       </Dashboard>
     );
@@ -63,7 +50,7 @@ const App = () => {
   return (
     <Dashboard>
       <div>
-        <Temperature value={temperature} />
+        <Temperature value={temperature!} />
         <div>{formatTimestamp(timestamp)}</div>
       </div>
       <HistoryGraph points={historyData} />
