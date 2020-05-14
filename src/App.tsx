@@ -41,8 +41,10 @@ const App = () => {
     return (
       <Dashboard>
         <div>
-          <Loader />
-          <p>{connecting ? 'Připojování' : 'Čekání'}</p>
+          <Loader
+            connecting={connecting}
+            waiting={temperature === undefined && !connecting}
+          />
         </div>
       </Dashboard>
     );
