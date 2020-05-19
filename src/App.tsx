@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { animated, Transition } from 'react-spring';
 
 import { Dashboard, HistoryGraph, Loader, Temperature } from './components';
 import { HistoryValue } from './components/HistoryGraph';
@@ -29,7 +30,7 @@ const App = () => {
     [],
   );
 
-  const { state } = useJSONSockets(
+  const { state } = useJSONSockets<TemperatureData>(
     process.env.REACT_APP_WEBSOCKET_SERVER!,
     handleTemperatureReceived,
   );
@@ -37,23 +38,33 @@ const App = () => {
   const [timestamp, setTimestamp] = useState<string | undefined>(undefined);
   const [historyData, setHistoryData] = useState<HistoryValue[]>([]);
 
-  if (temperature === undefined) {
-    return (
-      <Dashboard>
-        <div>
-          <Loader state={state} />
-        </div>
-      </Dashboard>
-    );
-  }
-
   return (
     <Dashboard>
-      <div>
-        <Temperature value={temperature} />
-        <div>{formatTimestamp(timestamp)}</div>
-      </div>
-      <HistoryGraph points={historyData} />
+      <Transition
+        items={temperature === undefined}
+        from={{
+          opacity: 0,
+          position: 'absolute',
+        }}
+        enter={{ opacity: 1 }}
+        leave={{ opacity: 0 }}
+      >
+        {(style, showLoader) => (
+          <animated.div style={style}>
+            {showLoader ? (
+              <Loader state={state} />
+            ) : (
+              <>
+                <div>
+                  <Temperature value={temperature!} />
+                  <div>{formatTimestamp(timestamp)}</div>
+                </div>
+                <HistoryGraph points={historyData} />
+              </>
+            )}
+          </animated.div>
+        )}
+      </Transition>
     </Dashboard>
   );
 };
