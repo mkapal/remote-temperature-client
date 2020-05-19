@@ -7,7 +7,13 @@ type Props = {
   icon: IconProp;
 };
 
-export const Icon: FC<Props> = ({ active, icon }) => {
-  const opacity = active ? 1 : 0.5;
-  return <FontAwesomeIcon icon={icon} size="3x" opacity={opacity} />;
-};
+export const Icon: FC<Props> = ({ active, icon }) => (
+  <FontAwesomeIcon
+    icon={icon}
+    size="3x"
+    opacity={active ? 1 : 0.5}
+    style={{
+      transition: 'opacity 0.5s',
+    }}
+  />
+);
