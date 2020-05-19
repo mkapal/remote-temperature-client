@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 import Sockette from 'sockette';
 
-type State = 'connecting' | 'waiting' | 'loaded' | 'error';
+export type WebSocketsState = 'connecting' | 'waiting' | 'loaded' | 'error';
 
 export const useJSONSockets = <Data>(
   serverUrl: string,
   onMessage: (data: Data) => void,
 ) => {
-  const [state, setState] = useState<State>('connecting');
+  const [state, setState] = useState<WebSocketsState>('connecting');
 
   useEffect(() => {
     const sockette = new Sockette(serverUrl, {
-      timeout: 1000,
-      maxAttempts: 10,
+      timeout: 2000,
+      maxAttempts: 5,
       onopen: () => {
         setState('waiting');
         console.info('Connected');
@@ -32,11 +32,9 @@ export const useJSONSockets = <Data>(
         console.info('Reconnecting...');
       },
       onmaximum: () => {
-        setState('loaded');
         console.warn('Stop attempting');
       },
       onclose: () => {
-        setState('loaded');
         console.warn('Closed');
       },
       onerror: () => {
