@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { animated, Transition } from 'react-spring';
 
 import { Dashboard, HistoryGraph, Loader, Temperature } from './components';
@@ -37,6 +37,15 @@ const App = () => {
   const [temperature, setTemperature] = useState<number | undefined>(undefined);
   const [timestamp, setTimestamp] = useState<string | undefined>(undefined);
   const [historyData, setHistoryData] = useState<HistoryValue[]>([]);
+  const [showData, setShowData] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setShowData(true), 200);
+  }, [setShowData]);
+
+  if (!showData) {
+    return <Dashboard />;
+  }
 
   return (
     <Dashboard>
