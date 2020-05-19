@@ -40,40 +40,38 @@ const App = () => {
   const [showData, setShowData] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setShowData(true), 200);
+    setTimeout(() => setShowData(true), 250);
   }, [setShowData]);
 
-  if (!showData) {
-    return <Dashboard />;
-  }
-
   return (
-    <Dashboard>
-      <Transition
-        items={temperature === undefined}
-        from={{
-          opacity: 0,
-          position: 'absolute',
-        }}
-        enter={{ opacity: 1 }}
-        leave={{ opacity: 0 }}
-      >
-        {(style, showLoader) => (
-          <animated.div style={style}>
-            {showLoader ? (
-              <Loader state={state} />
-            ) : (
-              <>
-                <div>
-                  <Temperature value={temperature!} />
-                  <div>{formatTimestamp(timestamp)}</div>
-                </div>
-                <HistoryGraph points={historyData} />
-              </>
-            )}
-          </animated.div>
-        )}
-      </Transition>
+    <Dashboard temperature={showData ? temperature : undefined}>
+      {showData && (
+        <Transition
+          items={temperature === undefined}
+          from={{
+            opacity: 0,
+            position: 'absolute',
+          }}
+          enter={{ opacity: 1 }}
+          leave={{ opacity: 0 }}
+        >
+          {(style, showLoader) => (
+            <animated.div style={style}>
+              {showLoader ? (
+                <Loader state={state} />
+              ) : (
+                <>
+                  <div>
+                    <Temperature value={temperature!} />
+                    <div>{formatTimestamp(timestamp)}</div>
+                  </div>
+                  <HistoryGraph points={historyData} />
+                </>
+              )}
+            </animated.div>
+          )}
+        </Transition>
+      )}
     </Dashboard>
   );
 };
