@@ -15,3 +15,21 @@ export const formatTimestamp = (timestamp?: string) => {
     minute: '2-digit',
   });
 };
+
+export const getHueForTemperature = (temperature?: number): number => {
+  if (temperature === undefined) {
+    return 210;
+  }
+
+  const minTemperature = -20;
+  const maxTemperature = 40;
+
+  const minHue = 270;
+  const maxHue = 0;
+
+  return (
+    maxHue +
+    ((minHue - maxHue) * (maxTemperature - temperature)) /
+      (maxTemperature - minTemperature)
+  );
+};

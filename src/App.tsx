@@ -1,7 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { animated, Transition } from 'react-spring';
 
-import { Dashboard, HistoryGraph, Loader, Temperature } from './components';
+import {
+  Dashboard,
+  GlobalStyle,
+  HistoryGraph,
+  Loader,
+  Temperature,
+} from './components';
 import { HistoryValue } from './components/HistoryGraph';
 import { useJSONSockets } from './hooks/useSockets';
 import { formatTimestamp } from './utils';
@@ -44,35 +50,38 @@ const App = () => {
   }, [setShowData]);
 
   return (
-    <Dashboard temperature={showData ? temperature : undefined}>
-      {showData && (
-        <Transition
-          items={temperature === undefined}
-          from={{
-            opacity: 0,
-            position: 'absolute',
-          }}
-          enter={{ opacity: 1 }}
-          leave={{ opacity: 0 }}
-        >
-          {(style, showLoader) => (
-            <animated.div style={style}>
-              {showLoader ? (
-                <Loader state={state} />
-              ) : (
-                <>
-                  <div>
-                    <Temperature value={temperature!} />
-                    <div>{formatTimestamp(timestamp)}</div>
-                  </div>
-                  <HistoryGraph points={historyData} />
-                </>
-              )}
-            </animated.div>
-          )}
-        </Transition>
-      )}
-    </Dashboard>
+    <>
+      <GlobalStyle temperature={temperature} />
+      <Dashboard>
+        {showData && (
+          <Transition
+            items={temperature === undefined}
+            from={{
+              opacity: 0,
+              position: 'absolute',
+            }}
+            enter={{ opacity: 1 }}
+            leave={{ opacity: 0 }}
+          >
+            {(style, showLoader) => (
+              <animated.div style={style}>
+                {showLoader ? (
+                  <Loader state={state} />
+                ) : (
+                  <>
+                    <div>
+                      <Temperature value={temperature!} />
+                      <div>{formatTimestamp(timestamp)}</div>
+                    </div>
+                    <HistoryGraph points={historyData} />
+                  </>
+                )}
+              </animated.div>
+            )}
+          </Transition>
+        )}
+      </Dashboard>
+    </>
   );
 };
 
