@@ -37,7 +37,7 @@ const App = () => {
   const [timestamp, setTimestamp] = useState<string | undefined>(undefined);
   const [historyData, setHistoryData] = useState<HistoryValue[]>([]);
 
-  if (state !== 'loaded') {
+  if (temperature === undefined) {
     return (
       <Dashboard>
         <div>
@@ -50,7 +50,7 @@ const App = () => {
   return (
     <Dashboard>
       <div>
-        <Temperature value={temperature!} />
+        <Temperature value={temperature} />
         <div>{formatTimestamp(timestamp)}</div>
       </div>
       <HistoryGraph points={historyData} />
