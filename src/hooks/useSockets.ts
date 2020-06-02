@@ -11,7 +11,7 @@ export const useJSONSockets = <Data>(
 
   useEffect(() => {
     const sockette = new Sockette(serverUrl, {
-      timeout: 2000,
+      timeout: 500,
       maxAttempts: 5,
       onopen: () => {
         setState('waiting');
