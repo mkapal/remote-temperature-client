@@ -70,7 +70,7 @@ const App = () => {
                 ) : (
                   <>
                     <div>
-                      <Temperature value={temperature!} />
+                      {temperature && <Temperature value={temperature} />}
                       <div>{formatTimestamp(timestamp)}</div>
                     </div>
                     <HistoryGraph points={historyData} />
