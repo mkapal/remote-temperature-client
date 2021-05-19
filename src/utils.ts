@@ -1,9 +1,9 @@
-export const formatTemperature = (value: number) => {
+export const formatTemperature = (value: number): string => {
   const fixedString = value.toFixed();
   return (fixedString === '-0' ? '0' : fixedString) + '°';
 };
 
-export const formatTimestamp = (timestamp?: string) => {
+export const formatTimestamp = (timestamp?: string): string => {
   if (!timestamp) {
     return '';
   }
