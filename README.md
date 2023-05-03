@@ -5,3 +5,7 @@
 A web app showing real-time temperature and a graph with some historical data.
 
 ![Application](screenshot.png)
+
+## Environment variables
+
+`REACT_APP_WEBSOCKET_SERVER` - for example `wss://server.example`
