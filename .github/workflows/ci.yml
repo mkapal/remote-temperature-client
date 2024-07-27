@@ -3,25 +3,29 @@ name: CI
 on:
   push:
     branches:
-    - master
+      - master
+
+permissions:
+  checks: write
+  contents: read
 
 jobs:
   firebase-deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Get Node.js version
-      id: nvm
-      run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
-    - uses: actions/setup-node@master
-      with:
-        node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
-    - run: yarn install --production --non-interactive --no-progress
-    - run: yarn build
-      env:
-        REACT_APP_WEBSOCKET_SERVER: ${{ secrets.WEBSOCKET_SERVER }}
-    - uses: w9jds/firebase-action@master
-      with:
-        args: deploy --only hosting --project arduino-remote
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - uses: actions/checkout@master
+      - name: Get Node.js version
+        id: nvm
+        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+      - uses: actions/setup-node@master
+        with:
+          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+      - run: yarn install --production --non-interactive --no-progress
+      - run: yarn build
+        env:
+          REACT_APP_WEBSOCKET_SERVER: ${{ secrets.WEBSOCKET_SERVER }}
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ARDUINO_REMOTE_TEMP }}
+          projectId: arduino-remote-temp
