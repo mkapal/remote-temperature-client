@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "arduino-remote-temperature",
     "public": "build",
     "ignore": [
       "firebase.json",
