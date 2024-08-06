@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle<Props>(({ temperature }) => {
       background-color: hsl(${hue}, 67%, 30%);
       background-image: linear-gradient(
         to bottom,
-        hsl(210, 67%, 30%) 0%,
+        #1e5799 0%,
         hsl(${hue}, 70%, 62%) 100%
       );
     }
